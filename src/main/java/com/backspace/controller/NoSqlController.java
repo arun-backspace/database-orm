@@ -1,4 +1,4 @@
-package com.backspace.nosql;
+package com.backspace.controller;
 
 import java.util.List;
 
@@ -6,6 +6,8 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+
+import com.backspace.nosql.NoSQLRepository;
 
 import org.bson.Document;
 
@@ -27,7 +29,7 @@ public class NoSqlController {
 	@GET
 	public List<Document> getSomething() {
 		return noSQLRepository.findAll("testsql", null);
-		//System.out.println(noSQLRepository);
+		// System.out.println(noSQLRepository);
 		// noSQLRepository
 	}
 }

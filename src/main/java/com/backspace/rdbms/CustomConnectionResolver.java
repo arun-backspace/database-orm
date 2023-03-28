@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import javax.transaction.Transactional;
 
 import com.backspace.service.CommonService;
+import com.backspace.utils.UdmConstants;
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -50,7 +51,7 @@ public class CustomConnectionResolver implements TenantConnectionResolver {
 	@ActivateRequestContext
 	public ConnectionProvider resolve(String tenantId) {
 
-		if ("backspace".equalsIgnoreCase(tenantId)) {
+		if (UdmConstants.BACKSPACE.getMessage().equalsIgnoreCase(tenantId)) {
 			LOGGER.info(String.join(" :: ", "Choosing default data source", tenantId));
 			SchemaDetails schemaDetails = SchemaDetails.builder().url(adminSchemaUrl).username(adminSchemaUserName)
 					.password(adminSchemaPassword).kind("mysql").build();
@@ -109,13 +110,13 @@ public class CustomConnectionResolver implements TenantConnectionResolver {
 	public Optional<DataSource> getDatasource(SchemaDetails schemaDetails) {
 		try {
 
-			if ("mariadb".equals(schemaDetails.getKind())) {
+			if (UdmConstants.MARIADB.getMessage().equalsIgnoreCase(schemaDetails.getKind())) {
 				MariaDbDataSource mariaDbDataSource = new MariaDbDataSource();
 				mariaDbDataSource.setUrl(schemaDetails.getUrl());
 				mariaDbDataSource.setPassword(schemaDetails.getPassword());
 				mariaDbDataSource.setUser(schemaDetails.getUsername());
 				return Optional.ofNullable(mariaDbDataSource);
-			} else if ("postgresql".equals(schemaDetails.getKind())) {
+			} else if (UdmConstants.POSTGRESQL.getMessage().equalsIgnoreCase(schemaDetails.getKind())) {
 				PGSimpleDataSource pgSimpleDataSource = new PGSimpleDataSource();
 				pgSimpleDataSource.setUrl(schemaDetails.getUrl());
 				pgSimpleDataSource.setPassword(schemaDetails.getPassword());

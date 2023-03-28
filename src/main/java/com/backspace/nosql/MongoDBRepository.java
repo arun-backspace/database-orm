@@ -10,7 +10,7 @@ import com.mongodb.client.MongoDatabase;
 
 import org.bson.Document;
 
-public class MongoDBRepository extends NoSQLRepository {
+public class MongoDBRepository implements NoSQLRepository {
 
 	private MongoDatabase database;
 
@@ -51,20 +51,21 @@ public class MongoDBRepository extends NoSQLRepository {
 	}
 
 	@Override
-	void save(Object data) {
+	public void save(Object data) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	Object findById(String id) {
+	public Object findById(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	List<Object> findAll() {
+	public List<Object> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

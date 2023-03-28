@@ -12,6 +12,7 @@ import javax.inject.Inject;
 
 import com.backspace.rdbms.SchemaDetails;
 import com.backspace.service.CommonService;
+import com.backspace.utils.UdmConstants;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
@@ -50,7 +51,7 @@ public class NoSQLRepositoryProducer {
 			schemaDetailsMap.put(tenantId, schemaDetails);
 		}
 
-		if ("mongo".equals(schemaDetails.getNosqlKind())) {
+		if (UdmConstants.MONGO.getMessage().equalsIgnoreCase(schemaDetails.getNosqlKind())) {
 
 			ConnectionString connectionString = new ConnectionString(schemaDetails.getNosqlUrl());
 			MongoClientSettings mongoClientSettings = MongoClientSettings.builder()

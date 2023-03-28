@@ -4,21 +4,21 @@ import java.util.List;
 
 import org.bson.Document;
 
-public abstract class NoSQLRepository {
+public interface NoSQLRepository {
 
-	abstract void save(Object data);
+	public abstract void save(Object data);
 
-	abstract Object findById(String id);
+	public abstract Object findById(String id);
 
-	abstract List<Object> findAll();
+	public abstract List<Object> findAll();
 
-	abstract Document findOne(String collectionName, Document query);
+	public abstract Document findOne(String collectionName, Document query);
 
-	abstract void insertOne(String collectionName, Document document);
+	public abstract void insertOne(String collectionName, Document document);
 
-	abstract void updateOne(String collectionName, Document query, Document update);
+	public abstract void updateOne(String collectionName, Document query, Document update);
 
-	abstract void deleteOne(String collectionName, Document query);
+	public abstract void deleteOne(String collectionName, Document query);
 
-	abstract List<Document> findAll(String collectionName, Document query);
+	public abstract List<Document> findAll(String collectionName, Document query);
 }
